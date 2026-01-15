@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Banking Interface</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.bank-box {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}.balance {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+button {
+    width: 48%;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.deposit {
+    background-color: #2563eb;
+}
+.withdraw {
+    background-color: #ef4444;
+}
+.message {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bank-box">
+    <div class="balance">Balance: $<span id="balance">1000</span></div>
+
+    <label>Amount</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <div class="buttons">
+        <button class="deposit" onclick="deposit()">Deposit</button>
+        <button class="withdraw" onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+let balance = 1000;
+
+function deposit() {
+    let amount = Number(document.getElementById("amount").value);
+    let message = document.getElementById("message");
+
+    if (amount <= 0) {
+        message.textContent = "Invalid amount!";
+        return;
+    }
+
+    balance += amount;
+    document.getElementById("balance").textContent = balance;
+    message.textContent = "";
+}
+
+function withdraw() {
+    let amount = Number(document.getElementById("amount").value);
+    let message = document.getElementById("message");
+
+    if (amount <= 0 || amount > balance) {
+        message.textContent = "Invalid amount!";
+        return;
+    }
+
+    balance -= amount;
+    document.getElementById("balance").textContent = balance;
+    message.textContent = "";
+}
+</script>
+
+</body>
+</html>
